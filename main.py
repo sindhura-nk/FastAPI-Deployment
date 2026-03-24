@@ -1,4 +1,3 @@
-from fastapi import FastAPI
 import pickle
 from fastapi import FastAPI, Request, Form
 from fastapi.staticfiles import StaticFiles
@@ -19,7 +18,7 @@ with open('pre.pkl','rb') as file:
 
 @app.get("/",response_class=HTMLResponse)
 async def home(request:Request):
-    return templates.TemplateResponse("DiabetesPrediction.html", {"request": request})
+    return templates.TemplateResponse(name="DiabetesPrediction.html",context= {"request": request})
 
 @app.post("/predict")
 async def predict(request:Request,
