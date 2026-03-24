@@ -49,12 +49,11 @@ async def predict(request:Request,
     
     # Return results
     return templates.TemplateResponse(
-        request,
         "DiabetesPrediction.html",
         {
             "request": request,
             "prediction_text": res_op
-        },
+        }
     )
 
 if __name__ == "__main__":
