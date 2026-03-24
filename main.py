@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 import uvicorn
+import os
 
 
 app = FastAPI()
@@ -57,12 +58,5 @@ async def predict(request:Request,
     )
 
 if __name__ == "__main__":
-    # Running uvicorn programmatically in production
-    uvicorn.run(
-        "main:app",               # The FastAPI app instance
-        host="127.0.0.1",           # Bind to all interfaces
-        port=8000,                # Port number for the application
-        log_level="info",         # Log level
-        workers=1,                # Number of workers 
-        lifespan="on"
-    )
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)

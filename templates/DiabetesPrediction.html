@@ -17,7 +17,7 @@
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="Gender" placeholder="Gender" required="required" />
+    	<input type="text" name="Gender" placeholder="Gender - 1 for Male and 0 for Female" required="required" />
         <input type="text" name="AGE" placeholder="AGE" required="required" />
 		<input type="text" name="Urea" placeholder="Urea" required="required" />
 		<input type="text" name="Cr" placeholder="Cr" required="required" />
@@ -34,7 +34,10 @@
 
    <br>
    <br>
-   {{ prediction_text }}
+
+    <h2 style="color:green;">
+    {{ prediction_text }}
+	</h2>
 
  </div>
 
