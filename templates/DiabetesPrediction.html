@@ -1,46 +1,52 @@
-<!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
-<head>
-  <meta charset="UTF-8">
-  <title>ML API</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  
-</head>
+<link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
 
-<body>
- <div class="login">
-	<h1>Diabetes Prediction Model</h1>
+<div class="container">
+    <h1>Diabetes Prediction</h1>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="Gender" placeholder="Gender - 1 for Male and 0 for Female" required="required" />
-        <input type="text" name="AGE" placeholder="AGE" required="required" />
-		<input type="text" name="Urea" placeholder="Urea" required="required" />
-		<input type="text" name="Cr" placeholder="Cr" required="required" />
-      <input type="text" name="HbA1c" placeholder="HbA1c" required="required" />
-        <input type="text" name="Chol" placeholder="Chol" required="required" />
-		<input type="text" name="TG" placeholder="TG" required="required" />
-		<input type="text" name="HDL" placeholder="HDL" required="required" />
-       <input type="text" name="LDL" placeholder="LDL" required="required" />
-        <input type="text" name="VLDL" placeholder="VLDL" required="required" />
-		<input type="text" name="BMI" placeholder="BMI" required="required" />
+    <form action="{{ url_for('predict') }}" method="post">
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <label>Gender</label>
+        <select name="Gender">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+
+        <label>Age</label>
+        <input type="number" name="AGE" required>
+
+        <label>Urea</label>
+        <input type="number" step="any" name="Urea" required>
+
+        <label>Creatinine</label>
+        <input type="number" step="any" name="Cr" required>
+
+        <label>HbA1c</label>
+        <input type="number" step="any" name="HbA1c" required>
+
+        <label>Cholesterol</label>
+        <input type="number" step="any" name="Chol" required>
+
+        <label>Triglycerides</label>
+        <input type="number" step="any" name="TG" required>
+
+        <label>HDL</label>
+        <input type="number" step="any" name="HDL" required>
+
+        <label>LDL</label>
+        <input type="number" step="any" name="LDL" required>
+
+        <label>VLDL</label>
+        <input type="number" step="any" name="VLDL" required>
+
+        <label>BMI</label>
+        <input type="number" step="any" name="BMI" required>
+
+        <button type="submit">Predict</button>
     </form>
 
-   <br>
-   <br>
-
-    <h2 style="color:green;">
-    {{ prediction_text }}
-	</h2>
-
- </div>
-
-
-</body>
-</html>
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+</div>
