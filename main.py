@@ -19,7 +19,7 @@ with open('pre.pkl','rb') as file:
 
 @app.get("/",response_class=HTMLResponse)
 async def home(request:Request):
-    return templates.TemplateResponse(request, "DiabetesPrediction.html", {"request": request})
+    return templates.TemplateResponse("DiabetesPrediction.html", {"request": request})
 
 @app.post("/predict")
 async def predict(request:Request,
